@@ -74,12 +74,66 @@ ChangePilot ist eine umfassende Webanwendung, die Change-Management-Berater bei 
 
 ## 📦 Installation & Setup
 
+### **⚡ Ein-Klick-Start (Empfohlen)**
+
+Das einfachste Setup - nur eine Datei ausführen!
+
+#### **macOS / Linux**
+```bash
+git clone <repository-url>
+cd flbcoat
+./start.sh
+```
+
+#### **Windows**
+```cmd
+git clone <repository-url>
+cd flbcoat
+start.bat
+```
+
+**Das war's!** Das Script erledigt automatisch:
+- ✅ Prüft Voraussetzungen (Node.js, Docker)
+- ✅ Erstellt Environment-Dateien
+- ✅ Startet Docker Container
+- ✅ Installiert Dependencies
+- ✅ Migriert Datenbank
+- ✅ Erstellt Demo-Benutzer
+- ✅ Öffnet Browser
+
+**Login-Daten:**
+- URL: http://localhost:5173
+- E-Mail: `demo@changepilot.com`
+- Passwort: `demo123`
+
+**Stoppen:**
+```bash
+./stop.sh        # macOS/Linux
+stop.bat         # Windows
+```
+
+**Makefile-Befehle (macOS/Linux):**
+```bash
+make start          # Starte ChangePilot
+make stop           # Stoppe ChangePilot
+make restart        # Neu starten
+make logs           # Logs anzeigen
+make prisma-studio  # Datenbank-GUI öffnen
+make clean          # Alles zurücksetzen
+make help           # Alle Befehle
+```
+
+---
+
 ### **Voraussetzungen**
 - Node.js >= 18.x
-- Docker & Docker Compose (optional, aber empfohlen)
-- PostgreSQL 15 (wenn nicht Docker)
+- Docker & Docker Compose
 
-### **Option 1: Mit Docker (Empfohlen)**
+---
+
+### **Alternative: Manuelle Installation**
+
+#### **Option 1: Mit Docker**
 
 1. **Repository klonen:**
 ```bash
@@ -89,10 +143,7 @@ cd flbcoat
 
 2. **Environment-Variablen einrichten:**
 ```bash
-# Backend
 cp backend/.env.example backend/.env
-
-# Frontend
 cp frontend/.env.example frontend/.env
 ```
 
@@ -114,7 +165,7 @@ npx prisma generate
 - Backend API: http://localhost:3001
 - PostgreSQL: localhost:5432
 
-### **Option 2: Manuelle Installation**
+#### **Option 2: Ohne Docker**
 
 #### **Backend Setup**
 ```bash
