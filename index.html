@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ROMO - Clickdummy Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div id="app" class="app-container">
+
+        <!-- Welcome Screen -->
+        <div id="screen-welcome" class="screen active">
+            <div class="welcome-slides">
+                <div class="slide active" data-slide="1">
+                    <div class="slide-content">
+                        <div class="logo">
+                            <div class="logo-icon">📱✨</div>
+                            <h1>ROMO</h1>
+                        </div>
+                        <h2>Willkommen bei ROMO</h2>
+                        <p class="tagline">Verdiene Credits für deine Offline-Zeit und löse sie bei Premium-Partnern ein</p>
+                        <div class="slide-illustration">🎯</div>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="2">
+                    <div class="slide-content">
+                        <h2>Wie Credits funktionieren</h2>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="icon">⏰</span>
+                                <p>Starte einen Timer und gehe offline</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="icon">💎</span>
+                                <p>Verdiene Credits für jede Minute</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="icon">🎁</span>
+                                <p>Löse Credits bei Partnern ein</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="3">
+                    <div class="slide-content">
+                        <h2>Unser Partner-Netzwerk</h2>
+                        <p>Entdecke exklusive Angebote bei über 100+ Premium-Partnern in ganz Österreich</p>
+                        <div class="partner-categories">
+                            <div class="category-chip">🏨 Hotels</div>
+                            <div class="category-chip">☕ Cafés</div>
+                            <div class="category-chip">🧘 Yoga</div>
+                            <div class="category-chip">💆 Wellness</div>
+                            <div class="category-chip">🎭 Kultur</div>
+                            <div class="category-chip">🛍️ Shopping</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="4">
+                    <div class="slide-content">
+                        <h2>Bereit loszulegen?</h2>
+                        <p>Starte jetzt und verdiene deine ersten Credits in nur 15 Minuten!</p>
+                        <div class="slide-illustration">🚀</div>
+                        <button class="btn btn-primary" onclick="navigate('screen-register-1')">Jetzt starten</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-dots">
+                <span class="dot active" onclick="showSlide('screen-welcome', 1)"></span>
+                <span class="dot" onclick="showSlide('screen-welcome', 2)"></span>
+                <span class="dot" onclick="showSlide('screen-welcome', 3)"></span>
+                <span class="dot" onclick="showSlide('screen-welcome', 4)"></span>
+            </div>
+
+            <button class="btn-next" onclick="nextSlide('screen-welcome')">Weiter →</button>
+        </div>
+
+        <!-- Registration Slide 1: Name -->
+        <div id="screen-register-1" class="screen">
+            <div class="progress-bar">
+                <div class="progress" style="width: 20%"></div>
+            </div>
+            <div class="form-screen">
+                <h2>Wie heißt du?</h2>
+                <p class="subtitle">Damit wir dich persönlich begrüßen können</p>
+                <div class="form-group">
+                    <input type="text" id="firstname" placeholder="Vorname" class="input-field">
+                    <input type="text" id="lastname" placeholder="Nachname" class="input-field">
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-register-2')">Weiter</button>
+            </div>
+        </div>
+
+        <!-- Registration Slide 2: Age -->
+        <div id="screen-register-2" class="screen">
+            <div class="progress-bar">
+                <div class="progress" style="width: 40%"></div>
+            </div>
+            <div class="form-screen">
+                <h2>Wie alt bist du?</h2>
+                <p class="subtitle">Um dir die besten Angebote zeigen zu können</p>
+                <div class="form-group">
+                    <input type="date" id="birthdate" class="input-field">
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-register-3')">Weiter</button>
+                <button class="btn btn-secondary" onclick="navigate('screen-register-1')">Zurück</button>
+            </div>
+        </div>
+
+        <!-- Registration Slide 3: Interests -->
+        <div id="screen-register-3" class="screen">
+            <div class="progress-bar">
+                <div class="progress" style="width: 60%"></div>
+            </div>
+            <div class="form-screen">
+                <h2>Welche Themen interessieren dich?</h2>
+                <p class="subtitle">Wähle mindestens 3 Themen aus</p>
+                <div class="interests-grid">
+                    <div class="interest-chip" onclick="toggleInterest(this)">⚽ Sport</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">🎭 Kultur</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">🎵 Musik</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">📰 Politik</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">💼 Wirtschaft</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">💰 Finanzen</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">🤖 KI</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">💻 Digitales</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">🍳 Kochen</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">✈️ Reisen</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">📚 Lesen</div>
+                    <div class="interest-chip" onclick="toggleInterest(this)">🎮 Gaming</div>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-register-4')">Weiter</button>
+                <button class="btn btn-secondary" onclick="navigate('screen-register-2')">Zurück</button>
+            </div>
+        </div>
+
+        <!-- Registration Slide 4: Free Time Goals -->
+        <div id="screen-register-4" class="screen">
+            <div class="progress-bar">
+                <div class="progress" style="width: 80%"></div>
+            </div>
+            <div class="form-screen">
+                <h2>Für welche Dinge möchtest du gerne mehr Zeit haben?</h2>
+                <p class="subtitle">Teile deine persönlichen Ziele mit uns</p>
+                <div class="form-group">
+                    <textarea id="goals" class="input-field textarea" rows="6" placeholder="z.B. Mehr Zeit mit Familie verbringen, ein Buch lesen, Sport treiben..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-register-5')">Weiter</button>
+                <button class="btn btn-secondary" onclick="navigate('screen-register-3')">Zurück</button>
+            </div>
+        </div>
+
+        <!-- Registration Slide 5: Account Creation -->
+        <div id="screen-register-5" class="screen">
+            <div class="progress-bar">
+                <div class="progress" style="width: 100%"></div>
+            </div>
+            <div class="form-screen">
+                <h2>Registrierung abschließen</h2>
+                <p class="subtitle">Wähle deine bevorzugte Anmeldemethode</p>
+                <div class="auth-options">
+                    <button class="btn btn-auth btn-passkey" onclick="navigate('screen-permissions')">
+                        <span class="icon">🔐</span>
+                        <span>Mit Passkey anmelden (empfohlen)</span>
+                    </button>
+                    <button class="btn btn-auth btn-google" onclick="navigate('screen-permissions')">
+                        <span class="icon">G</span>
+                        <span>Mit Google anmelden</span>
+                    </button>
+                    <button class="btn btn-auth btn-apple" onclick="navigate('screen-permissions')">
+                        <span class="icon"></span>
+                        <span>Mit Apple anmelden</span>
+                    </button>
+                    <button class="btn btn-auth btn-email" onclick="navigate('screen-permissions')">
+                        <span class="icon">📧</span>
+                        <span>Mit E-Mail anmelden</span>
+                    </button>
+                </div>
+                <p class="legal-text">Mit der Registrierung akzeptierst du unsere <a href="#">AGB</a> und <a href="#">Datenschutzbestimmungen</a></p>
+                <button class="btn btn-secondary" onclick="navigate('screen-register-4')">Zurück</button>
+            </div>
+        </div>
+
+        <!-- Permissions Screen -->
+        <div id="screen-permissions" class="screen">
+            <div class="form-screen">
+                <div class="permission-icon">🔒</div>
+                <h2>Berechtigungen erforderlich</h2>
+                <p class="subtitle">Damit ROMO funktioniert, benötigen wir folgende Berechtigungen:</p>
+
+                <div class="permission-list">
+                    <div class="permission-item">
+                        <div class="permission-icon-small">📱</div>
+                        <div class="permission-text">
+                            <h3>Bildschirmzeit-Berechtigung</h3>
+                            <p>Zum Blockieren von Apps während deiner Offline-Zeit</p>
+                        </div>
+                    </div>
+                    <div class="permission-item">
+                        <div class="permission-icon-small">🔔</div>
+                        <div class="permission-text">
+                            <h3>Benachrichtigungen</h3>
+                            <p>Für Updates zu Credits und Motivations-Nachrichten</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>📖 Hinweis:</strong> Du wirst zu den Smartphone-Einstellungen weitergeleitet, um die Berechtigung zu erteilen.</p>
+                </div>
+
+                <button class="btn btn-primary" onclick="navigate('screen-permissions-guide')">Berechtigungen erteilen</button>
+            </div>
+        </div>
+
+        <!-- Permissions Guide -->
+        <div id="screen-permissions-guide" class="screen">
+            <div class="form-screen">
+                <h2>So erteilst du die Berechtigung</h2>
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Einstellungen öffnen</h3>
+                            <p>Tippe auf "Zu Einstellungen", um die Smartphone-Einstellungen zu öffnen</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>ROMO finden</h3>
+                            <p>Suche in der Liste nach der ROMO App</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Berechtigung aktivieren</h3>
+                            <p>Aktiviere "Bildschirmzeit" und "Benachrichtigungen"</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-profile-complete')">Zu Einstellungen</button>
+                <button class="btn btn-secondary" onclick="navigate('screen-profile-complete')">Später erledigen</button>
+            </div>
+        </div>
+
+        <!-- Profile Complete -->
+        <div id="screen-profile-complete" class="screen">
+            <div class="form-screen">
+                <h2>Profil vervollständigen</h2>
+                <p class="subtitle">Noch ein paar Details für die besten Empfehlungen</p>
+
+                <div class="profile-photo-upload">
+                    <div class="photo-placeholder" onclick="alert('Foto hochladen')">
+                        <span class="icon">📷</span>
+                        <p>Profilbild hinzufügen</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nickname / Anzeigename</label>
+                    <input type="text" id="nickname" placeholder="Dein Nickname" class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label>Standort</label>
+                    <select id="location" class="input-field">
+                        <option value="">Wähle deinen Standort</option>
+                        <option value="wien">Wien</option>
+                        <option value="graz">Graz</option>
+                        <option value="linz">Linz</option>
+                        <option value="salzburg">Salzburg</option>
+                        <option value="innsbruck">Innsbruck</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Interessenskategorien für Partner-Angebote</label>
+                    <div class="interests-grid">
+                        <div class="interest-chip" onclick="toggleInterest(this)">🏨 Hotels</div>
+                        <div class="interest-chip" onclick="toggleInterest(this)">☕ Cafés</div>
+                        <div class="interest-chip" onclick="toggleInterest(this)">🧘 Yoga</div>
+                        <div class="interest-chip" onclick="toggleInterest(this)">💆 Wellness</div>
+                        <div class="interest-chip" onclick="toggleInterest(this)">🎭 Kultur</div>
+                        <div class="interest-chip" onclick="toggleInterest(this)">🛍️ Shopping</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="navigate('screen-tutorial-1')">Profil speichern</button>
+            </div>
+        </div>
+
+        <!-- Tutorial Screens -->
+        <div id="screen-tutorial-1" class="screen">
+            <div class="tutorial-screen">
+                <div class="tutorial-content">
+                    <div class="tutorial-illustration">📱</div>
+                    <h2>Willkommen in deiner ROMO App!</h2>
+                    <p>Lass uns die wichtigsten Funktionen kurz durchgehen</p>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-tutorial-2')">Los geht's</button>
+                <button class="btn-skip" onclick="navigate('screen-first-mission')">Tutorial überspringen</button>
+            </div>
+        </div>
+
+        <div id="screen-tutorial-2" class="screen">
+            <div class="tutorial-screen">
+                <div class="tutorial-content">
+                    <div class="tutorial-illustration">⏰</div>
+                    <h2>Timer-Funktion</h2>
+                    <p>Starte einen Timer, gehe offline und verdiene Credits für jede Minute</p>
+                    <div class="tutorial-demo">
+                        <div class="demo-timer">15 Min = 150 Credits</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-tutorial-3')">Weiter</button>
+            </div>
+        </div>
+
+        <div id="screen-tutorial-3" class="screen">
+            <div class="tutorial-screen">
+                <div class="tutorial-content">
+                    <div class="tutorial-illustration">💎</div>
+                    <h2>Credit-System</h2>
+                    <p>Je länger du offline bist, desto mehr Credits verdienst du. Credits kannst du im Store einlösen!</p>
+                    <div class="credit-examples">
+                        <div class="credit-example">15 Min = 150 💎</div>
+                        <div class="credit-example">1 Std = 600 💎</div>
+                        <div class="credit-example">4 Std = 2.400 💎</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-tutorial-4')">Weiter</button>
+            </div>
+        </div>
+
+        <div id="screen-tutorial-4" class="screen">
+            <div class="tutorial-screen">
+                <div class="tutorial-content">
+                    <div class="tutorial-illustration">🏪</div>
+                    <h2>Store & Partner</h2>
+                    <p>Löse deine Credits bei über 100+ Premium-Partnern in ganz Österreich ein</p>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-tutorial-5')">Weiter</button>
+            </div>
+        </div>
+
+        <div id="screen-tutorial-5" class="screen">
+            <div class="tutorial-screen">
+                <div class="tutorial-content">
+                    <div class="tutorial-illustration">🚨</div>
+                    <h2>Notfall-Button</h2>
+                    <p class="warning">⚠️ Wichtig: Wenn du eine Session abbrichst, erhältst du 0 Credits - auch wenn du fast fertig bist!</p>
+                    <div class="emergency-demo">
+                        <button class="btn btn-emergency" disabled>🚨 Notfall-Button</button>
+                        <p class="small">Nutze ihn nur im echten Notfall</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="navigate('screen-first-mission')">Verstanden</button>
+            </div>
+        </div>
+
+        <!-- First Mission -->
+        <div id="screen-first-mission" class="screen">
+            <div class="mission-screen">
+                <div class="mission-badge">🎯</div>
+                <h2>Deine erste Mission!</h2>
+                <p class="subtitle">Bereit für deine erste Offline-Zeit?</p>
+
+                <div class="mission-card">
+                    <h3>Anfänger-Mission</h3>
+                    <div class="mission-details">
+                        <div class="mission-detail">
+                            <span class="icon">⏰</span>
+                            <span>15 Minuten offline</span>
+                        </div>
+                        <div class="mission-detail">
+                            <span class="icon">💎</span>
+                            <span>150 Credits verdienen</span>
+                        </div>
+                        <div class="mission-detail">
+                            <span class="icon">🏆</span>
+                            <span>Achievement "First Steps" freischalten</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large" onclick="navigate('screen-dashboard')">Mission starten</button>
+            </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div id="screen-dashboard" class="screen">
+            <div class="dashboard-header">
+                <div class="user-greeting">
+                    <h2>Hallo, Max! 👋</h2>
+                    <div class="level-badge">Level 1 - Smartphone Junie</div>
+                </div>
+                <div class="notifications-icon" onclick="alert('Benachrichtigungen')">🔔</div>
+            </div>
+
+            <div class="credits-card">
+                <div class="credits-amount">
+                    <span class="credits-label">Deine Credits</span>
+                    <span class="credits-value">150 💎</span>
+                </div>
+                <div class="credits-subinfo">+150 heute verdient</div>
+            </div>
+
+            <div class="stats-today">
+                <div class="stat-item">
+                    <span class="stat-label">Heute</span>
+                    <span class="stat-value">15 Min</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Streak</span>
+                    <span class="stat-value">1 🔥</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Level</span>
+                    <span class="stat-value">1</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-large btn-start-detox" onclick="navigate('screen-timer-setup')">
+                ⏰ Detox starten
+            </button>
+
+            <div class="daily-challenge">
+                <h3>📅 Tägliche Challenge</h3>
+                <p>Erreiche heute 2 Stunden Detox-Zeit</p>
+                <div class="progress-bar-small">
+                    <div class="progress" style="width: 12.5%"></div>
+                </div>
+                <span class="progress-text">15 Min / 120 Min</span>
+            </div>
+
+            <div class="level-progress">
+                <h3>Nächstes Level</h3>
+                <div class="progress-bar-small">
+                    <div class="progress" style="width: 30%"></div>
+                </div>
+                <span class="progress-text">300 / 1000 XP</span>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <div class="nav-item active" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timer Setup -->
+        <div id="screen-timer-setup" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-dashboard')">← Zurück</button>
+                <h2>Timer einrichten</h2>
+                <div></div>
+            </div>
+
+            <div class="timer-content">
+                <div class="motivation-quote">
+                    <p>"Die Zeit ist das, was wir am meisten wollen, aber am schlechtesten nutzen." - William Penn</p>
+                </div>
+
+                <h3>Wähle deine Offline-Zeit</h3>
+
+                <div class="quick-timers">
+                    <div class="timer-option" onclick="selectTimer(15)">
+                        <span class="time">15 Min</span>
+                        <span class="credits">150 💎</span>
+                    </div>
+                    <div class="timer-option" onclick="selectTimer(30)">
+                        <span class="time">30 Min</span>
+                        <span class="credits">300 💎</span>
+                    </div>
+                    <div class="timer-option" onclick="selectTimer(60)">
+                        <span class="time">1 Std</span>
+                        <span class="credits">600 💎</span>
+                    </div>
+                    <div class="timer-option" onclick="selectTimer(120)">
+                        <span class="time">2 Std</span>
+                        <span class="credits">1.200 💎</span>
+                    </div>
+                    <div class="timer-option" onclick="selectTimer(240)">
+                        <span class="time">4 Std</span>
+                        <span class="credits">2.400 💎</span>
+                    </div>
+                    <div class="timer-option" onclick="selectTimer(480)">
+                        <span class="time">8 Std</span>
+                        <span class="credits">4.800 💎</span>
+                    </div>
+                </div>
+
+                <div class="custom-timer">
+                    <h3>Oder wähle eine eigene Zeit</h3>
+                    <div class="time-picker">
+                        <input type="number" id="hours" min="0" max="24" value="0" placeholder="Std">
+                        <span>:</span>
+                        <input type="number" id="minutes" min="0" max="59" value="15" placeholder="Min">
+                    </div>
+                    <div class="credits-calculation">
+                        <p>Du verdienst: <strong id="calculated-credits">150 💎</strong></p>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large" onclick="navigate('screen-timer-active')">Timer starten</button>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timer Active -->
+        <div id="screen-timer-active" class="screen">
+            <div class="timer-active-screen">
+                <div class="timer-circle">
+                    <div class="circle-progress">
+                        <svg width="280" height="280">
+                            <circle cx="140" cy="140" r="130" stroke="#e0e0e0" stroke-width="20" fill="none"/>
+                            <circle cx="140" cy="140" r="130" stroke="#4CAF50" stroke-width="20" fill="none"
+                                    stroke-dasharray="817" stroke-dashoffset="204"
+                                    transform="rotate(-90 140 140)"/>
+                        </svg>
+                        <div class="timer-display">
+                            <div class="time-remaining">11:23</div>
+                            <div class="time-label">verbleibend</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timer-info">
+                    <div class="motivation-message">
+                        <p>"Du machst das großartig! Bleib stark! 💪"</p>
+                    </div>
+
+                    <div class="credits-earning">
+                        <p>Aktuell verdient</p>
+                        <div class="credits-earned">38 💎</div>
+                        <div class="credits-total">von 150 💎</div>
+                    </div>
+
+                    <div class="progress-bar-full">
+                        <div class="progress" style="width: 25%"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-emergency" onclick="showEmergencyDialog()">
+                    🚨 Notfall-Button
+                </button>
+
+                <p class="emergency-warning">⚠️ Bei Abbruch erhältst du 0 Credits</p>
+            </div>
+        </div>
+
+        <!-- Timer Complete -->
+        <div id="screen-timer-complete" class="screen">
+            <div class="completion-screen">
+                <div class="confetti">🎉</div>
+                <div class="success-icon">✨ 🏆 ✨</div>
+                <h1>Geschafft!</h1>
+                <h2>Du warst 15 Minuten offline</h2>
+
+                <div class="rewards">
+                    <div class="reward-item">
+                        <span class="icon">💎</span>
+                        <span class="value">+150 Credits</span>
+                    </div>
+                    <div class="reward-item">
+                        <span class="icon">⭐</span>
+                        <span class="value">+300 XP</span>
+                    </div>
+                </div>
+
+                <div class="achievements-unlocked">
+                    <h3>🏆 Neue Achievements!</h3>
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🎯</span>
+                        <span class="achievement-name">First Steps</span>
+                    </div>
+                </div>
+
+                <div class="level-up-check">
+                    <p>Noch 700 XP bis Level 2</p>
+                </div>
+
+                <div class="streak-update">
+                    <p>🔥 1 Tag Streak</p>
+                </div>
+
+                <div class="motivational-quote">
+                    <p>"Der Erfolg besteht darin, dass man genau die Fähigkeiten hat, die im Moment gefragt sind." - Henry Ford</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="navigate('screen-dashboard')">Zum Dashboard</button>
+                    <button class="btn btn-secondary" onclick="navigate('screen-timer-setup')">Nächste Session starten</button>
+                    <button class="btn btn-outline" onclick="alert('Teilen')">📤 Erfolg teilen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Store Screen -->
+        <div id="screen-store" class="screen">
+            <div class="screen-header">
+                <h2>Store</h2>
+                <div class="credits-display-small">150 💎</div>
+            </div>
+
+            <div class="store-content">
+                <div class="search-filter">
+                    <input type="search" placeholder="🔍 Suche nach Angeboten..." class="search-input">
+                    <button class="btn-filter" onclick="alert('Filter')">🎚️</button>
+                </div>
+
+                <div class="featured-offers">
+                    <h3>⭐ Hervorgehobene Angebote</h3>
+                    <div class="offer-card featured">
+                        <div class="offer-image">🏨</div>
+                        <div class="offer-content">
+                            <div class="offer-badge">NEU</div>
+                            <h4>Boutique Hotel Vienna</h4>
+                            <p>1 Übernachtung inkl. Frühstück</p>
+                            <div class="offer-footer">
+                                <span class="credits-price">2.500 💎</span>
+                                <span class="location">📍 Wien</span>
+                            </div>
+                            <button class="btn btn-small btn-primary" onclick="navigate('screen-offer-detail')">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="categories-nav">
+                    <div class="category-tab active">Alle</div>
+                    <div class="category-tab">🏨 Hotels</div>
+                    <div class="category-tab">☕ Cafés</div>
+                    <div class="category-tab">🧘 Yoga</div>
+                    <div class="category-tab">💆 Wellness</div>
+                    <div class="category-tab">🎭 Kultur</div>
+                </div>
+
+                <div class="offers-grid">
+                    <div class="offer-card" onclick="navigate('screen-offer-detail')">
+                        <div class="offer-image">☕</div>
+                        <h4>Café Central</h4>
+                        <p>Gratis Kaffee + Kuchen</p>
+                        <div class="offer-footer">
+                            <span class="credits-price">300 💎</span>
+                            <span class="location">📍 Wien</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-image">🧘</div>
+                        <h4>YogaSpace Vienna</h4>
+                        <p>2 Gratis Yoga-Klassen</p>
+                        <div class="offer-footer">
+                            <span class="credits-price">800 💎</span>
+                            <span class="location">📍 Wien</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-image">💆</div>
+                        <h4>Spa & Wellness</h4>
+                        <p>Massage (50 Min)</p>
+                        <div class="offer-footer">
+                            <span class="credits-price">1.500 💎</span>
+                            <span class="location">📍 Salzburg</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-image">🎭</div>
+                        <h4>Burgtheater</h4>
+                        <p>2 Theaterkarten</p>
+                        <div class="offer-footer">
+                            <span class="credits-price">1.200 💎</span>
+                            <span class="location">📍 Wien</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-image">🍽️</div>
+                        <h4>Restaurant Amalfi</h4>
+                        <p>3-Gang-Menü für 2</p>
+                        <div class="offer-footer">
+                            <span class="credits-price">2.000 💎</span>
+                            <span class="location">📍 Graz</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-image">🛍️</div>
+                        <h4>Fashion Store</h4>
+                        <p>20% Rabatt-Gutschein</p>
+                        <div class="offer-footer">
+                            <span class="credits-price">500 💎</span>
+                            <span class="location">📍 Wien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offer Detail -->
+        <div id="screen-offer-detail" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-store')">← Zurück</button>
+                <h2>Angebot</h2>
+                <div class="credits-display-small">150 💎</div>
+            </div>
+
+            <div class="offer-detail-content">
+                <div class="offer-detail-images">
+                    <div class="main-image">🏨</div>
+                    <div class="image-thumbnails">
+                        <div class="thumbnail active">🛏️</div>
+                        <div class="thumbnail">🍳</div>
+                        <div class="thumbnail">🏊</div>
+                    </div>
+                </div>
+
+                <div class="offer-detail-info">
+                    <div class="offer-badges">
+                        <span class="badge badge-new">NEU</span>
+                        <span class="badge badge-popular">BELIEBT</span>
+                    </div>
+                    <h2>Boutique Hotel Vienna</h2>
+                    <p class="offer-location">📍 Herrengasse 10, 1010 Wien</p>
+
+                    <div class="offer-credits-big">
+                        <span class="label">Benötigte Credits:</span>
+                        <span class="value">2.500 💎</span>
+                    </div>
+
+                    <div class="credits-insufficient">
+                        <p>⚠️ Du brauchst noch <strong>2.350 Credits</strong></p>
+                        <button class="btn btn-outline btn-small" onclick="navigate('screen-timer-setup')">Credits verdienen</button>
+                    </div>
+
+                    <div class="offer-description">
+                        <h3>Beschreibung</h3>
+                        <p>Erlebe eine unvergessliche Nacht in unserem luxuriösen Boutique Hotel im Herzen von Wien. Das Angebot beinhaltet:</p>
+                        <ul>
+                            <li>1 Übernachtung im Doppelzimmer</li>
+                            <li>Reichhaltiges Frühstücksbuffet</li>
+                            <li>Nutzung des Wellness-Bereichs</li>
+                            <li>Welcome Drink an der Bar</li>
+                            <li>Gratis WiFi</li>
+                        </ul>
+                    </div>
+
+                    <div class="offer-conditions">
+                        <h3>Einlösungs-Bedingungen</h3>
+                        <p>✓ Gültig von Mo-Do<br>
+                           ✓ Nach Verfügbarkeit<br>
+                           ✓ Reservierung erforderlich<br>
+                           ✓ Nicht kombinierbar mit anderen Angeboten</p>
+                    </div>
+
+                    <div class="offer-validity">
+                        <h3>Gültigkeit</h3>
+                        <p>📅 Bis 31.12.2025</p>
+                    </div>
+
+                    <div class="offer-contact">
+                        <h3>Kontakt & Öffnungszeiten</h3>
+                        <p>📞 +43 1 234 5678<br>
+                           📧 info@boutiquehotel.at<br>
+                           🌐 <a href="#">www.boutiquehotel.at</a><br>
+                           🕐 Check-in: 14:00 - 22:00</p>
+                    </div>
+
+                    <div class="map-preview">
+                        <div class="map-placeholder">
+                            🗺️ Kartenansicht
+                        </div>
+                        <button class="btn btn-outline btn-small">📍 Wegbeschreibung</button>
+                    </div>
+
+                    <div class="action-buttons-fixed">
+                        <button class="btn btn-primary btn-large" disabled onclick="navigate('screen-redeem-confirm')">
+                            Jetzt einlösen (2.350 💎 fehlen noch)
+                        </button>
+                        <button class="btn btn-secondary" onclick="alert('Erinnerung gesetzt')">
+                            🔔 Erinnere mich
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Redeem Confirmation -->
+        <div id="screen-redeem-confirm" class="screen">
+            <div class="dialog-overlay">
+                <div class="dialog">
+                    <h2>Angebot einlösen?</h2>
+                    <p>Möchtest du <strong>2.500 Credits</strong> für dieses Angebot einlösen?</p>
+
+                    <div class="offer-summary">
+                        <p><strong>Boutique Hotel Vienna</strong></p>
+                        <p>1 Übernachtung inkl. Frühstück</p>
+                    </div>
+
+                    <div class="balance-after">
+                        <p>Neuer Kontostand: <strong>0 💎</strong></p>
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button class="btn btn-primary" onclick="navigate('screen-voucher')">Ja, einlösen</button>
+                        <button class="btn btn-secondary" onclick="navigate('screen-offer-detail')">Abbrechen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voucher Screen -->
+        <div id="screen-voucher" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-store')">← Zurück</button>
+                <h2>Dein Voucher</h2>
+                <div></div>
+            </div>
+
+            <div class="voucher-content">
+                <div class="success-message">
+                    <span class="icon">✅</span>
+                    <h3>Erfolgreich eingelöst!</h3>
+                </div>
+
+                <div class="voucher-card">
+                    <div class="voucher-header">
+                        <h3>Boutique Hotel Vienna</h3>
+                        <span class="voucher-status active">AKTIV</span>
+                    </div>
+
+                    <div class="qr-code">
+                        <div class="qr-placeholder">
+                            <p>QR-CODE</p>
+                            <p style="font-size: 120px; margin: 0;">⬛</p>
+                        </div>
+                    </div>
+
+                    <div class="voucher-code">
+                        <p class="code-label">Voucher-Code:</p>
+                        <p class="code-value">ROMO-2024-XK9P-L4M2</p>
+                        <button class="btn btn-outline btn-small" onclick="alert('Code kopiert!')">📋 Kopieren</button>
+                    </div>
+
+                    <div class="voucher-validity">
+                        <p>⏰ Gültig bis: 31.12.2025</p>
+                        <p>📍 Herrengasse 10, 1010 Wien</p>
+                    </div>
+
+                    <div class="voucher-instructions">
+                        <h4>So löst du ein:</h4>
+                        <ol>
+                            <li>Zeige diesen QR-Code beim Partner vor</li>
+                            <li>Der Partner scannt den Code</li>
+                            <li>Genieße dein Angebot!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="voucher-actions">
+                    <button class="btn btn-primary" onclick="alert('In Wallet gespeichert')">📱 In Wallet speichern</button>
+                    <button class="btn btn-secondary" onclick="alert('Wegbeschreibung geöffnet')">📍 Wegbeschreibung</button>
+                    <button class="btn btn-outline" onclick="navigate('screen-my-vouchers')">Alle Vouchers anzeigen</button>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Vouchers -->
+        <div id="screen-my-vouchers" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-store')">← Zurück</button>
+                <h2>Meine Vouchers</h2>
+                <div></div>
+            </div>
+
+            <div class="vouchers-filter">
+                <div class="filter-tabs">
+                    <div class="tab active">Aktiv</div>
+                    <div class="tab">Verwendet</div>
+                    <div class="tab">Abgelaufen</div>
+                </div>
+            </div>
+
+            <div class="vouchers-list">
+                <div class="voucher-item active" onclick="navigate('screen-voucher')">
+                    <div class="voucher-icon">🏨</div>
+                    <div class="voucher-info">
+                        <h4>Boutique Hotel Vienna</h4>
+                        <p>Gültig bis: 31.12.2025</p>
+                        <span class="status-badge active">AKTIV</span>
+                    </div>
+                    <div class="voucher-arrow">→</div>
+                </div>
+
+                <div class="empty-state">
+                    <p>📭</p>
+                    <p>Keine weiteren Vouchers</p>
+                    <button class="btn btn-primary" onclick="navigate('screen-store')">Zum Store</button>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="screen-profile" class="screen">
+            <div class="profile-header">
+                <div class="profile-cover"></div>
+                <div class="profile-info-header">
+                    <div class="profile-avatar" onclick="alert('Profilbild ändern')">👤</div>
+                    <h2>Max Mustermann</h2>
+                    <p class="username">@maxmustermann</p>
+                    <div class="level-badge-large">Level 1 - Smartphone Junie 🥉</div>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value">150 💎</span>
+                        <span class="stat-label">Credits</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">1 🔥</span>
+                        <span class="stat-label">Streak</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">15 Min</span>
+                        <span class="stat-label">Gesamt</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">100%</span>
+                        <span class="stat-label">Erfolgsrate</span>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3>📊 Statistiken</h3>
+                    <div class="stats-details">
+                        <div class="stat-row">
+                            <span>Gesamt Detox-Zeit:</span>
+                            <strong>15 Minuten</strong>
+                        </div>
+                        <div class="stat-row">
+                            <span>Ø Session-Länge:</span>
+                            <strong>15 Min</strong>
+                        </div>
+                        <div class="stat-row">
+                            <span>Sessions gesamt:</span>
+                            <strong>1</strong>
+                        </div>
+                        <div class="stat-row">
+                            <span>Erfolgsrate:</span>
+                            <strong>100% (1/1)</strong>
+                        </div>
+                        <div class="stat-row">
+                            <span>Diese Woche:</span>
+                            <strong>15 Min</strong>
+                        </div>
+                        <div class="stat-row">
+                            <span>Dieser Monat:</span>
+                            <strong>15 Min</strong>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-small" onclick="navigate('screen-statistics')">Alle Statistiken</button>
+                </div>
+
+                <div class="profile-section">
+                    <h3>🏆 Achievements</h3>
+                    <div class="achievements-preview">
+                        <div class="achievement-badge unlocked">
+                            <span class="badge-icon">🎯</span>
+                            <span class="badge-name">First Steps</span>
+                        </div>
+                        <div class="achievement-badge locked">
+                            <span class="badge-icon">🔒</span>
+                            <span class="badge-name">???</span>
+                        </div>
+                        <div class="achievement-badge locked">
+                            <span class="badge-icon">🔒</span>
+                            <span class="badge-name">???</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-small" onclick="navigate('screen-achievements')">Alle Achievements</button>
+                </div>
+
+                <div class="profile-section">
+                    <h3>👤 Persönliche Daten</h3>
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span>Name:</span>
+                            <span>Max Mustermann</span>
+                            <button class="btn-edit" onclick="alert('Bearbeiten')">✏️</button>
+                        </div>
+                        <div class="data-row">
+                            <span>E-Mail:</span>
+                            <span>max@example.com</span>
+                            <button class="btn-edit" onclick="alert('Bearbeiten')">✏️</button>
+                        </div>
+                        <div class="data-row">
+                            <span>Standort:</span>
+                            <span>Wien</span>
+                            <button class="btn-edit" onclick="alert('Bearbeiten')">✏️</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3>👥 Freunde & Community</h3>
+                    <div class="social-stats">
+                        <div class="social-stat">
+                            <strong>0</strong>
+                            <span>Freunde</span>
+                        </div>
+                        <div class="social-stat">
+                            <strong>#-</strong>
+                            <span>Ranking</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-small" onclick="navigate('screen-friends')">👥 Freunde einladen</button>
+                    <button class="btn btn-outline btn-small" onclick="navigate('screen-leaderboard')">🏆 Leaderboard</button>
+                </div>
+
+                <div class="profile-section">
+                    <h3>⚙️ Einstellungen</h3>
+                    <div class="settings-list">
+                        <div class="setting-item" onclick="alert('Benachrichtigungen')">
+                            <span>🔔 Benachrichtigungen</span>
+                            <span>→</span>
+                        </div>
+                        <div class="setting-item" onclick="alert('Datenschutz')">
+                            <span>🔒 Datenschutz</span>
+                            <span>→</span>
+                        </div>
+                        <div class="setting-item" onclick="alert('Sprache')">
+                            <span>🌐 Sprache</span>
+                            <span>Deutsch →</span>
+                        </div>
+                        <div class="setting-item" onclick="alert('Sounds')">
+                            <span>🔊 Sounds & Vibration</span>
+                            <span>→</span>
+                        </div>
+                        <div class="setting-item" onclick="alert('Berechtigungen')">
+                            <span>✓ Bildschirmzeit-Berechtigung</span>
+                            <span>Aktiv →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3>💎 ROMO Pro</h3>
+                    <div class="pro-teaser">
+                        <p>✨ Hol dir 50% mehr Credits und exklusive Features!</p>
+                        <button class="btn btn-primary" onclick="navigate('screen-pro')">Pro werden</button>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3>❓ Support & Hilfe</h3>
+                    <div class="support-list">
+                        <div class="support-item" onclick="alert('FAQ')">
+                            <span>📖 FAQ</span>
+                            <span>→</span>
+                        </div>
+                        <div class="support-item" onclick="navigate('screen-tutorial-1')">
+                            <span>🎓 Tutorial erneut ansehen</span>
+                            <span>→</span>
+                        </div>
+                        <div class="support-item" onclick="alert('Support')">
+                            <span>💬 Support kontaktieren</span>
+                            <span>→</span>
+                        </div>
+                        <div class="support-item" onclick="alert('Feedback')">
+                            <span>⭐ Feedback geben</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section danger-zone">
+                    <button class="btn btn-danger" onclick="alert('Konto löschen')">Konto löschen</button>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Screen -->
+        <div id="screen-achievements" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-profile')">← Zurück</button>
+                <h2>Achievements</h2>
+                <div></div>
+            </div>
+
+            <div class="achievements-content">
+                <div class="achievements-stats">
+                    <p>1 von 30 freigeschaltet</p>
+                </div>
+
+                <div class="achievements-category">
+                    <h3>⏰ Zeitbasiert</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card unlocked">
+                            <div class="achievement-icon">🎯</div>
+                            <h4>First Steps</h4>
+                            <p>Erste Session abgeschlossen</p>
+                            <span class="achievement-date">Heute</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Morgenruhe</h4>
+                            <p>Session vor 8 Uhr morgens</p>
+                            <span class="achievement-progress">0/1</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Nachtruhe</h4>
+                            <p>Session nach 22 Uhr</p>
+                            <span class="achievement-progress">0/1</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Arbeitsfokus</h4>
+                            <p>8-Stunden-Session</p>
+                            <span class="achievement-progress">0/1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievements-category">
+                    <h3>📊 Quantitätsbasiert</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card in-progress">
+                            <div class="achievement-icon">🎯</div>
+                            <h4>Getting Started</h4>
+                            <p>10 Sessions abschließen</p>
+                            <span class="achievement-progress">1/10</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Committed</h4>
+                            <p>50 Sessions abschließen</p>
+                            <span class="achievement-progress">1/50</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Dedicated</h4>
+                            <p>100 Sessions abschließen</p>
+                            <span class="achievement-progress">1/100</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Master</h4>
+                            <p>500 Sessions abschließen</p>
+                            <span class="achievement-progress">1/500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievements-category">
+                    <h3>💪 Qualitätsbasiert</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Eiserner Wille</h4>
+                            <p>30 Tage ohne Notfall-Button</p>
+                            <span class="achievement-progress">1/30</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Weekend Warrior</h4>
+                            <p>Sessions an allen Wochenenden</p>
+                            <span class="achievement-progress">0/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievements-category">
+                    <h3>👥 Sozial</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Influencer</h4>
+                            <p>5 Freunde einladen</p>
+                            <span class="achievement-progress">0/5</span>
+                        </div>
+                        <div class="achievement-card locked">
+                            <div class="achievement-icon">🔒</div>
+                            <h4>Community Leader</h4>
+                            <p>20 Freunde einladen</p>
+                            <span class="achievement-progress">0/20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pro Version Screen -->
+        <div id="screen-pro" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-profile')">← Zurück</button>
+                <h2>ROMO Pro</h2>
+                <div></div>
+            </div>
+
+            <div class="pro-content">
+                <div class="pro-hero">
+                    <div class="pro-icon">✨ 💎 ✨</div>
+                    <h1>Werde Pro</h1>
+                    <p class="pro-tagline">Hol das Maximum aus deiner Offline-Zeit</p>
+                </div>
+
+                <div class="pro-trial">
+                    <p>🎁 30 Tage kostenlos testen</p>
+                </div>
+
+                <div class="pro-features">
+                    <h3>Das bekommst du:</h3>
+                    <div class="feature-list-pro">
+                        <div class="pro-feature">
+                            <span class="feature-icon">💎</span>
+                            <div class="feature-text">
+                                <h4>50% Credit-Boost</h4>
+                                <p>Verdiene 50% mehr Credits pro Session</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">⭐</span>
+                            <div class="feature-text">
+                                <h4>Exklusive Partner</h4>
+                                <p>Zugang zu Premium-Partner-Angeboten</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">📊</span>
+                            <div class="feature-text">
+                                <h4>Erweiterte Statistiken</h4>
+                                <p>Detaillierte Analysen & Export-Funktion</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">⏱️</span>
+                            <div class="feature-text">
+                                <h4>Custom Timer Presets</h4>
+                                <p>Eigene Timer-Vorlagen speichern</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">🎯</span>
+                            <div class="feature-text">
+                                <h4>Priority Support</h4>
+                                <p>Bevorzugter Kunden-Support</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">🚫</span>
+                            <div class="feature-text">
+                                <h4>Werbefrei</h4>
+                                <p>Keine Werbung in der App</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">🏆</span>
+                            <div class="feature-text">
+                                <h4>Exklusive Achievements</h4>
+                                <p>Zusätzliche Achievements nur für Pro</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">🔥</span>
+                            <div class="feature-text">
+                                <h4>Streak-Schutz</h4>
+                                <p>1x pro Monat Streak retten</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">🎁</span>
+                            <div class="feature-text">
+                                <h4>Bonus-Challenges</h4>
+                                <p>Zusätzliche wöchentliche Challenges</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">🚀</span>
+                            <div class="feature-text">
+                                <h4>Früher Zugang</h4>
+                                <p>Neue Features vor allen anderen</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">💰</span>
+                            <div class="feature-text">
+                                <h4>Partner-Rabatte</h4>
+                                <p>Zusätzliche Rabatte bei Partnern</p>
+                            </div>
+                        </div>
+                        <div class="pro-feature">
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <h4>Pro-Badge</h4>
+                                <p>Exklusives Pro-Badge im Profil</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-options">
+                    <h3>Wähle dein Abo:</h3>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4>Monatlich</h4>
+                        </div>
+                        <div class="pricing-price">
+                            <span class="price">4,99 €</span>
+                            <span class="period">pro Monat</span>
+                        </div>
+                        <p class="pricing-note">Jederzeit kündbar</p>
+                        <button class="btn btn-outline" onclick="alert('Monatliches Abo ausgewählt')">Auswählen</button>
+                    </div>
+
+                    <div class="pricing-card recommended">
+                        <div class="pricing-badge">SPARE 33%</div>
+                        <div class="pricing-header">
+                            <h4>Jährlich</h4>
+                        </div>
+                        <div class="pricing-price">
+                            <span class="price">39,99 €</span>
+                            <span class="period">pro Jahr</span>
+                        </div>
+                        <p class="pricing-note">Das sind nur 3,33 € pro Monat</p>
+                        <p class="pricing-savings">2 Monate gratis!</p>
+                        <button class="btn btn-primary" onclick="alert('Jährliches Abo ausgewählt')">Auswählen</button>
+                    </div>
+                </div>
+
+                <div class="pro-guarantee">
+                    <p>✓ 30 Tage kostenlos testen<br>
+                       ✓ Keine automatische Verlängerung ohne Bestätigung<br>
+                       ✓ Jederzeit kündbar</p>
+                </div>
+
+                <div class="pro-legal">
+                    <p class="small">Zahlung erfolgt über deinen App Store Account. Das Abo verlängert sich automatisch, kann aber jederzeit gekündigt werden. <a href="#">Weitere Informationen</a></p>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="screen-leaderboard" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-profile')">← Zurück</button>
+                <h2>Leaderboard</h2>
+                <div></div>
+            </div>
+
+            <div class="leaderboard-content">
+                <div class="leaderboard-tabs">
+                    <div class="tab active">Monatlich</div>
+                    <div class="tab">All-Time</div>
+                    <div class="tab">Freunde</div>
+                    <div class="tab">Wien</div>
+                </div>
+
+                <div class="leaderboard-list">
+                    <div class="leaderboard-item top-3">
+                        <span class="rank">🥇</span>
+                        <div class="user-info">
+                            <span class="username">Sarah_Offline</span>
+                            <span class="level">Level 25</span>
+                        </div>
+                        <span class="score">45.230 💎</span>
+                    </div>
+                    <div class="leaderboard-item top-3">
+                        <span class="rank">🥈</span>
+                        <div class="user-info">
+                            <span class="username">TechDetoxKing</span>
+                            <span class="level">Level 22</span>
+                        </div>
+                        <span class="score">38.150 💎</span>
+                    </div>
+                    <div class="leaderboard-item top-3">
+                        <span class="rank">🥉</span>
+                        <div class="user-info">
+                            <span class="username">MindfulMaria</span>
+                            <span class="level">Level 20</span>
+                        </div>
+                        <span class="score">32.890 💎</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span class="rank">4</span>
+                        <div class="user-info">
+                            <span class="username">OfflineHero</span>
+                            <span class="level">Level 18</span>
+                        </div>
+                        <span class="score">28.420 💎</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span class="rank">5</span>
+                        <div class="user-info">
+                            <span class="username">ZenMaster93</span>
+                            <span class="level">Level 16</span>
+                        </div>
+                        <span class="score">24.680 💎</span>
+                    </div>
+                    <div class="leaderboard-divider">...</div>
+                    <div class="leaderboard-item current-user">
+                        <span class="rank">--</span>
+                        <div class="user-info">
+                            <span class="username">Max Mustermann (Du)</span>
+                            <span class="level">Level 1</span>
+                        </div>
+                        <span class="score">150 💎</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Friends Screen -->
+        <div id="screen-friends" class="screen">
+            <div class="screen-header">
+                <button class="btn-back" onclick="navigate('screen-profile')">← Zurück</button>
+                <h2>Freunde</h2>
+                <div></div>
+            </div>
+
+            <div class="friends-content">
+                <div class="referral-card">
+                    <h3>👥 Lade Freunde ein</h3>
+                    <p>Ihr beide erhaltet 500 Bonus-Credits!</p>
+
+                    <div class="referral-code">
+                        <p class="code-label">Dein Referral-Code:</p>
+                        <div class="code-display">
+                            <span class="code">MAX2024ROMO</span>
+                            <button class="btn btn-small" onclick="alert('Code kopiert!')">📋</button>
+                        </div>
+                    </div>
+
+                    <div class="share-buttons">
+                        <button class="btn btn-outline btn-small" onclick="alert('Via WhatsApp teilen')">💬 WhatsApp</button>
+                        <button class="btn btn-outline btn-small" onclick="alert('Via Instagram teilen')">📸 Instagram</button>
+                        <button class="btn btn-outline btn-small" onclick="alert('Link kopieren')">🔗 Link</button>
+                    </div>
+                </div>
+
+                <div class="friends-list">
+                    <h3>Meine Freunde (0)</h3>
+                    <div class="empty-state">
+                        <p>👥</p>
+                        <p>Noch keine Freunde</p>
+                        <p class="subtitle">Lade deine ersten Freunde ein und verdient gemeinsam Credits!</p>
+                    </div>
+                </div>
+
+                <div class="referral-rewards">
+                    <h3>🎁 Belohnungen</h3>
+                    <div class="reward-item">
+                        <span class="icon">✓</span>
+                        <span class="text">500 Credits wenn Freund sich registriert</span>
+                    </div>
+                    <div class="reward-item">
+                        <span class="icon">✓</span>
+                        <span class="text">500 Credits zusätzlich nach erster Session</span>
+                    </div>
+                    <div class="reward-item">
+                        <span class="icon">✓</span>
+                        <span class="text">Achievement bei 5 eingeladenen Freunden</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigate('screen-dashboard')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-timer-setup')">
+                    <span class="icon">⏰</span>
+                    <span class="label">Timer</span>
+                </div>
+                <div class="nav-item" onclick="navigate('screen-store')">
+                    <span class="icon">🏪</span>
+                    <span class="label">Store</span>
+                </div>
+                <div class="nav-item active" onclick="navigate('screen-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profil</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
