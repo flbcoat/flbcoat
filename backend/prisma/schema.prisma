@@ -1,0 +1,302 @@
+// Prisma Schema für ChangePilot
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Benutzer & Authentifizierung
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  firstName String
+  lastName  String
+  role      UserRole @default(CONSULTANT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Beziehungen
+  projects      ProjectMember[]
+  createdProjects Project[]     @relation("ProjectCreator")
+  tasks         Task[]
+  comments      Comment[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  CONSULTANT
+  CLIENT
+}
+
+// Mandant (für Multi-Tenancy)
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String
+  domain    String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Beziehungen
+  projects Project[]
+
+  @@map("tenants")
+}
+
+// Projekt
+model Project {
+  id          String        @id @default(uuid())
+  name        String
+  description String?
+  status      ProjectStatus @default(PLANNING)
+  framework   Framework     @default(ADKAR)
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Mandant
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  // Ersteller
+  createdById String
+  createdBy   User   @relation("ProjectCreator", fields: [createdById], references: [id])
+
+  // Beziehungen
+  members       ProjectMember[]
+  stakeholders  Stakeholder[]
+  tasks         Task[]
+  milestones    Milestone[]
+  adkarProgress AdkarProgress[]
+  kotterSteps   KotterStep[]
+
+  @@map("projects")
+}
+
+enum ProjectStatus {
+  PLANNING
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+}
+
+enum Framework {
+  ADKAR
+  KOTTER
+  LEWIN
+  AGILE
+  CUSTOM
+}
+
+// Projektmitglieder
+model ProjectMember {
+  id        String   @id @default(uuid())
+  role      String   @default("Member")
+  joinedAt  DateTime @default(now())
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+  @@map("project_members")
+}
+
+// Stakeholder
+model Stakeholder {
+  id             String             @id @default(uuid())
+  firstName      String
+  lastName       String
+  email          String?
+  position       String?
+  department     String?
+  influence      InfluenceLevel     @default(MEDIUM)
+  interest       InterestLevel      @default(MEDIUM)
+  attitude       StakeholderAttitude @default(NEUTRAL)
+  notes          String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Beziehungen
+  communications Communication[]
+
+  @@map("stakeholders")
+}
+
+enum InfluenceLevel {
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
+enum InterestLevel {
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
+enum StakeholderAttitude {
+  STRONG_SUPPORTER
+  SUPPORTER
+  NEUTRAL
+  SKEPTIC
+  BLOCKER
+}
+
+// ADKAR Progress Tracking
+model AdkarProgress {
+  id        String      @id @default(uuid())
+  phase     AdkarPhase
+  status    PhaseStatus @default(NOT_STARTED)
+  progress  Int         @default(0) // 0-100
+  notes     String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, phase])
+  @@map("adkar_progress")
+}
+
+enum AdkarPhase {
+  AWARENESS
+  DESIRE
+  KNOWLEDGE
+  ABILITY
+  REINFORCEMENT
+}
+
+enum PhaseStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+// Kotter's 8 Steps
+model KotterStep {
+  id        String      @id @default(uuid())
+  step      Int         // 1-8
+  title     String
+  status    PhaseStatus @default(NOT_STARTED)
+  progress  Int         @default(0) // 0-100
+  notes     String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, step])
+  @@map("kotter_steps")
+}
+
+// Aufgaben (Kanban Board)
+model Task {
+  id          String     @id @default(uuid())
+  title       String
+  description String?
+  status      TaskStatus @default(TODO)
+  priority    Priority   @default(MEDIUM)
+  dueDate     DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  assigneeId String?
+  assignee   User?   @relation(fields: [assigneeId], references: [id], onDelete: SetNull)
+
+  // Beziehungen
+  comments Comment[]
+
+  @@map("tasks")
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  REVIEW
+  DONE
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+// Meilensteine
+model Milestone {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  completed   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("milestones")
+}
+
+// Kommunikation
+model Communication {
+  id        String            @id @default(uuid())
+  type      CommunicationType
+  subject   String
+  content   String
+  sentAt    DateTime?
+  scheduled Boolean           @default(false)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  stakeholderId String
+  stakeholder   Stakeholder @relation(fields: [stakeholderId], references: [id], onDelete: Cascade)
+
+  @@map("communications")
+}
+
+enum CommunicationType {
+  EMAIL
+  MEETING
+  PRESENTATION
+  WORKSHOP
+  SURVEY
+}
+
+// Kommentare
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  taskId String
+  task   Task   @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}
